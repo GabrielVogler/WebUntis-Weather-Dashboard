@@ -26,3 +26,7 @@ hs_err_pid*
 node_modules
 .env
 package-lock.json
+
+# Documnets
+.pdf
+.odt

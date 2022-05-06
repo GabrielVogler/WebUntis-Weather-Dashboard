@@ -13,24 +13,36 @@ public class Subject {
     String name;
     String teacher;
     String room;
+    String className;
     int starttime;
     int endtime;
     Color color;
 
-    Subject(String timetableFile) {
+    Subject(String timetableFile, int index) {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(timetableFile));
-            JSONArray array = (JSONArray) obj;
-            JSONObject first = (JSONObject) array.get(0);
-            JSONArray array2 = (JSONArray) first.get("su");
-            JSONObject obj2 = (JSONObject) array2.get(0);
-            this.name = obj2.get("name").toString();
+            JSONObject subjectJSON = (JSONObject)((JSONArray) obj).get(index);
+            System.out.println(subjectJSON.toString());
+            JSONObject first = (JSONObject)((JSONArray)subjectJSON.get("su")).get(0);
+            this.name = first.get("name").toString();
+
+            JSONObject second = (JSONObject)(((JSONArray) subjectJSON.get("kl"))).get(0);
+            this.className = second.get("name").toString();
+
+            this.teacher = getVariable(subjectJSON, "te", true);
         } catch (ParseException pe) {
             System.out.println("position: " + pe.getPosition());
             System.out.println(pe);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String  getVariable(JSONObject subjectJSON, String variable, boolean shortName){
+        String name = "";
+        if(shortName) name = "name";
+        else name = "longname";
+        return ((JSONObject)(((JSONArray) subjectJSON.get(variable))).get(0)).get(name).toString();
     }
 }
