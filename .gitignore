@@ -27,6 +27,6 @@ node_modules
 .env
 package-lock.json
 
-# Documnets
+# Documents
 *.pdf
 *.odt
