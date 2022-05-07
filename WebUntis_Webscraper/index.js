@@ -2,11 +2,13 @@ const WebUntis = require('webuntis');
 require('dotenv').config();
 const untis = new WebUntis('htl3r', process.env.LOGIN, process.env.PASSWORD, 'urania.webuntis.com');
 const fs = require("fs")
+const date = new Date();
+date.setDate(date.getDate() + 1);
 
 untis
     .login()
     .then(() => {
-        return untis.getOwnTimetableForToday();
+        return untis.getOwnTimetableFor(date);
     })
     .then((timetable) => {
         writeJSON(timetable);
