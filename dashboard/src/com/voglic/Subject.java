@@ -10,27 +10,26 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Subject {
-    String name;
-    String teacher;
-    String room;
-    String className;
-    int starttime;
-    int endtime;
-    Color color;
+    static String name;
+    static String teacher;
+    static String room;
+    static String className;
+    static int starttime;
+    static int endtime;
+    static Color color;
 
     Subject(String timetableFile, int index) {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(timetableFile));
-            JSONObject subjectJSON = (JSONObject)((JSONArray) obj).get(index);
-            System.out.println(subjectJSON.toString());
-            JSONObject first = (JSONObject)((JSONArray)subjectJSON.get("su")).get(0);
-            this.name = first.get("name").toString();
-
-            JSONObject second = (JSONObject)(((JSONArray) subjectJSON.get("kl"))).get(0);
-            this.className = second.get("name").toString();
-
-            this.teacher = getVariable(subjectJSON, "te", true);
+            JSONObject subjectJSON = (JSONObject) ((JSONArray) obj).get(index);
+            name = getVariable(subjectJSON, "su");
+            className = getVariable(subjectJSON, "kl");
+            teacher = getVariable(subjectJSON, "te");
+            room = getVariable(subjectJSON, "ro");
+            starttime = Integer.parseInt(getVariable(subjectJSON, "startTime", true));
+            endtime = Integer.parseInt(getVariable(subjectJSON, "endTime", true));
+            color = getColor();
         } catch (ParseException pe) {
             System.out.println("position: " + pe.getPosition());
             System.out.println(pe);
@@ -39,10 +38,39 @@ public class Subject {
         }
     }
 
-    private static String  getVariable(JSONObject subjectJSON, String variable, boolean shortName){
+    private static String getVariable(JSONObject subjectJSON, String variable, boolean ifTime, boolean shortName) {
         String name = "";
-        if(shortName) name = "name";
+        if (shortName) name = "name";
         else name = "longname";
-        return ((JSONObject)(((JSONArray) subjectJSON.get(variable))).get(0)).get(name).toString();
+        if (ifTime) return subjectJSON.get(variable).toString();
+        else return ((JSONObject) (((JSONArray) subjectJSON.get(variable))).get(0)).get(name).toString();
+    }
+    private static String getVariable(JSONObject subjectJSON, String variable, boolean ifTime) {
+        return getVariable(subjectJSON, variable, ifTime, true);
+    }
+    private static String getVariable(JSONObject subjectJSON, String variable) {
+        return getVariable(subjectJSON, variable, false, true);
+    }
+
+    private static Color getColor(){
+        switch (name){
+            case "D" -> {return Color.ORANGE;}
+            case "BW" -> {return Color.PURPLE;}
+            case "GETE" -> {return Color.BROWN;}
+            case "BSPK" -> {return Color.GREEN;}
+            case "BS" -> {return Color.MEDIUMPURPLE;}
+            case "COPR" -> {return Color.DARKBLUE;}
+            case "AM" -> {return Color.LIGHTYELLOW;}
+            case "SEW" -> {return Color.LIGHTGREEN;}
+            case "CH" -> {return Color.MEDIUMBLUE;}
+            case "GGP" -> {return Color.LIGHTBLUE;}
+            case "E" -> {return Color.BLUE;}
+            case "GINF" -> {return Color.YELLOW;}
+            case "RK" -> {return Color.MEDIUMSEAGREEN;}
+            case "MEDT" -> {return Color.PINK;}
+            case "NWT" -> {return Color.VIOLET;}
+            case "ITSI" -> {return Color.YELLOWGREEN;}
+            default -> {return Color.LIGHTGRAY;}
+        }
     }
 }
