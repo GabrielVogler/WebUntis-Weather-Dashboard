@@ -18,5 +18,9 @@ public class Main {
         /*WebUntisApi.run();
         day = new SchoolDay("../files/JSON_Stunden/timetable.json");
         System.out.println(day);*/
+        System.out.println(Time.get());
+        System.out.println(Time.getTime());
+        System.out.println(Time.getDate());
+
     }
 }
