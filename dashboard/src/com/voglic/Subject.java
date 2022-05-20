@@ -10,15 +10,15 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Subject {
-    String name;
+    public String name;
     String teacher;
     String room;
     String className;
     int starttime;
     int endtime;
-    Color color;
+    public Color color;
 
-    Subject(String timetableFile, int index) {
+    public Subject(String timetableFile, int index) {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(timetableFile));
