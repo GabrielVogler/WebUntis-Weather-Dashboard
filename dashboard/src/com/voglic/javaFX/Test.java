@@ -1,6 +1,6 @@
 package com.voglic.javaFX;
 
-import com.voglic.Subject;
+import com.voglic.backend.Subject;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;

@@ -1,4 +1,4 @@
-package com.voglic;
+package com.voglic.backend;
 
 import java.io.IOException;
 

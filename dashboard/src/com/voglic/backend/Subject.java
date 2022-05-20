@@ -1,4 +1,4 @@
-package com.voglic;
+package com.voglic.backend;
 
 import javafx.scene.paint.Color;
 import org.json.simple.JSONArray;

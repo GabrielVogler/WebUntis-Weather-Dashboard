@@ -1,4 +1,4 @@
-package com.voglic;
+package com.voglic.backend;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
