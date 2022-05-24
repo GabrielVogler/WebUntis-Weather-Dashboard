@@ -6,6 +6,10 @@ import java.util.Comparator;
 public class SchoolDay {
     Subject[] subjects;
 
+    /**
+     * Constructor of the Object, the Object is an array of Subjects
+     * @param timetableFile the file of the Timetable from the WebUntisAPI
+     */
     SchoolDay(String timetableFile) {
         int length = 0;
         try {
@@ -29,6 +33,9 @@ public class SchoolDay {
     }
 }
 
+/**
+ * a comparator for the subjects by their starttime
+ */
 class Sortbystart implements Comparator<Subject> {
     @Override
     public int compare(Subject a, Subject b){

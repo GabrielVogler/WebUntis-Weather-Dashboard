@@ -1,9 +1,10 @@
 const WebUntis = require('webuntis');
 require('dotenv').config();
 const untis = new WebUntis('htl3r', process.env.LOGIN, process.env.PASSWORD, 'urania.webuntis.com');
-const fs = require("fs")
+const fs = require("fs");
+const { exit } = require('process');
 const date = new Date();
-date.setDate(date.getDate() + 1);
+date.setDate(date.getDate());
 
 untis
     .login()

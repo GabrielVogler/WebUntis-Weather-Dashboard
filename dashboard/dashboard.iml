@@ -10,5 +10,7 @@
     <orderEntry type="library" name="json-simple-1.1.1" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="json-20220320" level="project" />
+    <orderEntry type="library" name="owm-japis-2.5.0.5" level="project" />
   </component>
 </module>
