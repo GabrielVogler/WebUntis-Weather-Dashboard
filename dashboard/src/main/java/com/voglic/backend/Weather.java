@@ -1,5 +1,6 @@
 package com.voglic.backend;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,7 +14,8 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Weather {
-    private static String key = "eec7beb9238441f1a2aee45f1b60fecf";
+    static Dotenv dotenv = Dotenv.load();
+    private static String key = dotenv.get("KEY");
     private static String weather = "";
     private static float temp = 0;
 
