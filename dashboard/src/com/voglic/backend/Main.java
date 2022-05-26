@@ -22,6 +22,6 @@ public class Main {
         System.out.println(Time.getTime());
         System.out.println(Time.getDate());
         System.out.println(Weather.getWeather("Vienna"));
-
+        System.out.println(Weather.getTemp("Vienna"));
     }
 }
