@@ -55,11 +55,7 @@ public class Weather {
                 weather = (weatherGet.get("main")).toString();
                 temp = (float)((double)tempr.get("temp") - 273.15);
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
+        } catch (ParseException | ProtocolException | MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
