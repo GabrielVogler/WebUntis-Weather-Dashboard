@@ -7,7 +7,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ! Currently not working !
+ */
 public class WebUntisApi {
+    /**
+     * runs the execution method and defines the commands for starting the NodeJS program
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static void run() throws IOException, InterruptedException {
         String destFolder="../WebUntis_Webscraper";
 
@@ -22,6 +30,16 @@ public class WebUntisApi {
         updateCommand.add(npmStart);
         runExecution(updateCommand,jsFile);
     }
+
+    /**
+     * runs the execution command for the NodeJS program
+     * @param command           ArrayList of commands from void run()
+     * @param navigatePath      Path of the destination file
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws IOException
+     */
+
     public static void runExecution(List<String> command, File navigatePath) throws IOException, InterruptedException, IOException {
         System.out.println(command);
 

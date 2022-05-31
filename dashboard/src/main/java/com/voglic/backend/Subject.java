@@ -18,6 +18,11 @@ public class Subject {
     int endtime;
     public Color color;
 
+    /**
+     * Constructor of a Subject, reads the timetable and makes a Subject with essential information
+     * @param timetableFile File of the timetable JSON
+     * @param index         index of the Subject in the timetable file
+     */
     public Subject(String timetableFile, int index) {
         JSONParser parser = new JSONParser();
         try {
@@ -38,6 +43,14 @@ public class Subject {
         }
     }
 
+    /**
+     * returns the variables which are picked from an JSONObject
+     * @param subjectJSON
+     * @param variable
+     * @param ifTime
+     * @param shortName
+     * @return
+     */
     private static String getVariable(JSONObject subjectJSON, String variable, boolean ifTime, boolean shortName) {
         String nameSwitch = "";
         if (shortName) nameSwitch = "name";
@@ -52,6 +65,10 @@ public class Subject {
         return getVariable(subjectJSON, variable, false, true);
     }
 
+    /**
+     *
+     * @return  defined fixed Color of Subject
+     */
     private Color getColor(){
         switch (name){
             case "D" -> {return Color.ORANGE;}
@@ -76,6 +93,7 @@ public class Subject {
 
     @Override
     public String toString() {
+        //return name + " - " + teacher + ": " + starttime + " - " + endtime;
         return name + ": " + starttime;
     }
 }

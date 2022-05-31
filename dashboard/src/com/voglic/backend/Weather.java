@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Weather {
     public static void main(String[] args) {
         boolean isMetric = true;
-        String owmApiKey = "eec7beb9238441f1a2aee45f1b60fecf"; /* YOUR OWM API KEY HERE */
-        String weatherCity = "Vienna,AT";
+        String owmApiKey = "XXXXXXXXXXXX"; /* YOUR OWM API KEY HERE */
+        String weatherCity = "Brisbane,AU";
         byte forecastDays = 3;
         OpenWeatherMap.Units units = (isMetric)
                 ? OpenWeatherMap.Units.METRIC
