@@ -23,7 +23,7 @@ public class Gui extends Application {
         /**
          * Get Current Subject
          */
-        Subject sub = new Subject("files/JSON_Stunden/timetable.json", 3);
+        Subject sub = new Subject("../files/JSON_Stunden/timetable.json", 3);
         System.out.println(sub.name);
 
         /**
