@@ -1,10 +1,12 @@
 package com.voglic.backend;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
 public class SchoolDay {
-    Subject[] subjects;
+    public static ArrayList<Subject> subjects = new ArrayList<Subject>();
+    Subject[] subjectArray;
 
     /**
      * Constructor of the Object, the Object is an array of Subjects
@@ -20,16 +22,30 @@ public class SchoolDay {
         }catch (IndexOutOfBoundsException e){
             System.out.println("Succesfully read the length!");
         }
-        subjects = new Subject[length];
+        subjectArray = new Subject[length];
         for (int i = 0; i < length; i++){
-            subjects[i] = new Subject(timetableFile, i);
+            subjectArray[i] = new Subject(timetableFile, i);
         }
-        Arrays.sort(subjects, new Sortbystart());
+        Arrays.sort(subjectArray, new Sortbystart());
+        subjects = new ArrayList<>(Arrays.asList(subjectArray));
+        fixLessons();
+        subjectArray = subjects.toArray(new Subject[subjects.size()]);
+    }
+
+    private static void fixLessons(){
+        for(int i = 0; i < subjects.size(); i++){
+            for(int j = 0; j < subjects.size(); j++){
+                if(subjects.get(i).starttime == subjects.get(j).starttime && i != j){
+                    subjects.get(i).teacher += ", " + subjects.get(j).teacher;
+                    subjects.remove(j);
+                }
+            }
+        }
     }
 
     @Override
     public String toString() {
-        return "SchoolDay: " + Arrays.toString(subjects);
+        return "SchoolDay: " + Arrays.toString(subjectArray);
     }
 }
 

@@ -93,6 +93,7 @@ public class Subject {
 
     @Override
     public String toString() {
+        //return name + " - " + teacher + ": " + starttime + " - " + endtime;
         return name + ": " + starttime;
     }
 }

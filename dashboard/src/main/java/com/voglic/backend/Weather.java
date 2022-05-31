@@ -1,5 +1,6 @@
 package com.voglic.backend;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,14 +14,17 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Weather {
-    private static String key = "eec7beb9238441f1a2aee45f1b60fecf";
+    static Dotenv dotenv = Dotenv.load();
+    private static String key = dotenv.get("KEY");
+    private static String weather = "";
+    private static float temp = 0;
 
     /**
      * interacts with the OpenWeatherAPI and gives Back the Current Weather Information
      * @param city      city where the weather is from
      * @return          Weather
      */
-    public static String getWeather(String city){
+    private static void update(String city){
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -44,8 +48,12 @@ public class Weather {
                 JSONArray dataObject = (JSONArray) parser.parse(String.valueOf("[" + informationString + "]"));
 
                 JSONObject countryData = (JSONObject) dataObject.get(0);
-                JSONObject weather = (JSONObject) ((JSONArray) countryData.get("weather")).get(0);
-                return weather.get("main").toString();
+                //System.out.println(countryData);
+                //System.out.println(countryData.get("main"));
+                JSONObject tempr = (JSONObject) countryData.get("main");
+                JSONObject weatherGet = (JSONObject) ((JSONArray) countryData.get("weather")).get(0);
+                weather = (weatherGet.get("main")).toString();
+                temp = (float)((double)tempr.get("temp") - 273.15);
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -56,6 +64,14 @@ public class Weather {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public static String getWeather(String city){
+        update(city);
+        return weather;
+    }
+    public static float getTemp(String city){
+        update(city);
+        return temp;
     }
 }
