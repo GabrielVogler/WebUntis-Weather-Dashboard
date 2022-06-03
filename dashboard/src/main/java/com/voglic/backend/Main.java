@@ -1,5 +1,7 @@
 package com.voglic.backend;
 
+import com.voglic.javaFX.Gui;
+
 import java.io.IOException;
 
 public class Main {
@@ -13,14 +15,17 @@ public class Main {
         System.out.println(am.starttime);
         System.out.println(am.endtime);
         System.out.println(am.color);*/
-        SchoolDay day = new SchoolDay("files/JSON_Stunden/timetable.json");
+        System.out.println(new Subject());
+        SchoolDay day = new SchoolDay("../files/JSON_Stunden/timetable.json");
         System.out.println(day);
         /*WebUntisApi.run();
         day = new SchoolDay("../files/JSON_Stunden/timetable.json");
         System.out.println(day);*/
         System.out.println(Time.get());
         System.out.println(Time.getTime());
+        System.out.println(Time.getTimeInt());
         System.out.println(Time.getDate());
-
+        System.out.println(Weather.getWeather("Vienna"));
+        System.out.println(Weather.getTemp("Vienna"));
     }
 }

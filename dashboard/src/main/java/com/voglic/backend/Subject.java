@@ -42,6 +42,18 @@ public class Subject {
             e.printStackTrace();
         }
     }
+    public Subject (String name, String teacher, String room, String className, int starttime, int endtime){
+        this.name = name;
+        this.teacher = teacher;
+        this.room = room;
+        this.className = className;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.color = getColor();
+    }
+    public Subject(){
+        this("XYZ", "Muster", "000", "0Xx", 0, 0);
+    }
 
     /**
      * returns the variables which are picked from an JSONObject

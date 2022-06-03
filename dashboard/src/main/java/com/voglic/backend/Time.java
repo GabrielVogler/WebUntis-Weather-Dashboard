@@ -31,4 +31,7 @@ public class Time {
         String[] result = get().split(" ");
         return result[1];
     }
+    public static int getTimeInt(){
+        return Integer.parseInt(getTime().split(":")[0] + getTime().split(":")[1]);
+    }
 }

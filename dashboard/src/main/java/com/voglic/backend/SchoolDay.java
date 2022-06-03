@@ -42,6 +42,15 @@ public class SchoolDay {
             }
         }
     }
+    public static Subject getCurrentSubject(){
+        int currentTime = Time.getTimeInt();
+        for (int i = 0; i < subjects.size(); i++){
+            if(subjects.get(i).starttime <= currentTime && subjects.get(i).endtime >= currentTime){
+                return subjects.get(i);
+            }
+        }
+        return new Subject();
+    }
 
     @Override
     public String toString() {
