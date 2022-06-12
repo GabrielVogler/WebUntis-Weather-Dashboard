@@ -15,9 +15,9 @@ public class Main {
         System.out.println(am.starttime);
         System.out.println(am.endtime);
         System.out.println(am.color);*/
-        System.out.println(new Subject());
-        SchoolDay day = new SchoolDay("../files/JSON_Stunden/timetable.json");
-        System.out.println(day);
+        //System.out.println(new Subject());
+        //SchoolDay day = new SchoolDay("../files/JSON_Stunden/timetable.json");
+        //System.out.println(day);
         /*WebUntisApi.run();
         day = new SchoolDay("../files/JSON_Stunden/timetable.json");
         System.out.println(day);*/

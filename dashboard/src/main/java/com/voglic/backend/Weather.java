@@ -13,9 +13,12 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Scanner;
 
+import static com.voglic.backend.Time.getTimeInt;
+
 public class Weather {
     static Dotenv dotenv = Dotenv.load();
     private static String key = dotenv.get("KEY");
+    private static final String ICONS_TEMPLATE_PATH = "dashboard/src/main/java/com/voglic/javaFX/ressources/icons/";
     private static String weather = "";
     private static float temp = 0;
 
@@ -66,6 +69,33 @@ public class Weather {
         update(city);
         return weather;
     }
+
+    public static String getIcon(String city){
+        update(city);
+        switch(getWeather(city)){
+            case "Clear":
+                if(getTimeInt() > 2200 || getTimeInt() < 0500){
+                    return ICONS_TEMPLATE_PATH + "clear_day.png";
+                }else{
+                    return ICONS_TEMPLATE_PATH + "clear_night.png";
+                }
+
+            case "Clouds":
+                if(getTimeInt() > 2200 || getTimeInt() < 0500){
+                    return ICONS_TEMPLATE_PATH + "partly_cloudy_day.png";
+                }else{
+                    return ICONS_TEMPLATE_PATH + "partly_cloudy_night.png";
+                }
+            case "Rain":
+                return ICONS_TEMPLATE_PATH + "rain.png";
+            case "Snow":
+                return ICONS_TEMPLATE_PATH + "snow.png";
+            case "Thunderstorm":
+                return ICONS_TEMPLATE_PATH + "thunderstorm.png";
+        }
+        return weather;
+    }
+
     public static float getTemp(String city){
         update(city);
         return temp;
