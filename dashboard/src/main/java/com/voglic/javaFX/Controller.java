@@ -77,19 +77,22 @@ public class Controller implements Initializable {
                 1000L); //time between executions 1000 ms = 1s
     }
 
+    /**
+     * Weather Thread Loop
+     */
     private void checkWeather(){
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    Path imageFile = Paths.get( Weather.getIcon("Vienna"));
+                    Path imageFile = Paths.get( Weather.getIcon("Vienna")); // make Path
                     try {
-                        icon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
+                        icon.setImage(new Image(imageFile.toUri().toURL().toExternalForm())); // set new Icon
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
-                    condition.setText(Weather.getWeather("Vienna"));
-                    temp.setText(Weather.getTempString("Vienna") + "°C");
+                    condition.setText(Weather.getWeather("Vienna")); //set Condition
+                    temp.setText(Weather.getTempString("Vienna") + "°C"); // set Temperature
                 });
             }
         };
@@ -98,7 +101,7 @@ public class Controller implements Initializable {
         t.scheduleAtFixedRate(
                 task,    //called Method
                 0, //delay before first execution
-                1000L); //time between executions 60000 ms = 60s
+                60000L); //time between executions 60000 ms = 60s
     }
 
     @Override
