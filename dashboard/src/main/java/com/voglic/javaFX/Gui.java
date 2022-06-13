@@ -34,7 +34,6 @@ public class Gui extends Application {
         Runnable clock = new Runnable() {
             public void run() {
                 clockString = Time.getTime();
-                t.setText(clockString);
                 System.out.println(Time.getTime());
             }
         };

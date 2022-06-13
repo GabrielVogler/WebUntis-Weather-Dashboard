@@ -18,9 +18,10 @@ import static com.voglic.backend.Time.getTimeInt;
 public class Weather {
     static Dotenv dotenv = Dotenv.load();
     private static String key = dotenv.get("KEY");
-    private static final String ICONS_TEMPLATE_PATH = "dashboard/src/main/java/com/voglic/javaFX/ressources/icons/";
+    private static final String ICONS_TEMPLATE_PATH = "src/main/java/com/voglic/javaFX/ressources/icons/";
     private static String weather = "";
-    private static float temp = 0;
+    private static double tempDouble = 0;
+    private static int temp = (int)tempDouble;
 
     /**
      * interacts with the OpenWeatherAPI and gives Back the Current Weather Information
@@ -56,11 +57,10 @@ public class Weather {
                 JSONObject tempr = (JSONObject) countryData.get("main");
                 JSONObject weatherGet = (JSONObject) ((JSONArray) countryData.get("weather")).get(0);
                 weather = (weatherGet.get("main")).toString();
-                temp = (float)((double)tempr.get("temp") - 273.15);
+                tempDouble = ((double) tempr.get("temp") - 273.15);
+                temp = (int) tempDouble;
             }
-        } catch (ParseException | ProtocolException | MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -96,8 +96,12 @@ public class Weather {
         return weather;
     }
 
-    public static float getTemp(String city){
+    public static int getTemp(String city){
         update(city);
         return temp;
+    }
+
+    public static String getTempString(String city){
+        return String.valueOf(getTemp(city));
     }
 }
