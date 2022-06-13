@@ -1,6 +1,5 @@
 package com.voglic.javaFX;
 
-import com.voglic.backend.Time;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -46,7 +45,6 @@ public class GuiMain extends Application {
          * set Scene to Stage
          * make Stage visible
          */
-        //Stage
         stage.setTitle("WebUntis_Weather_Dashboard");
         stage.setScene(sc);
         stage.show();
