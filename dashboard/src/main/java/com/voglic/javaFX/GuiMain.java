@@ -47,6 +47,7 @@ public class GuiMain extends Application {
         });
 
         //Stage
+        stage.setTitle("WebUntis_Weather_Dashboard");
         stage.setScene(sc);
         stage.show();
 
